@@ -3,7 +3,7 @@ package com.softeq.jm.service;
 import com.softeq.jm.commons.core.AppUser;
 import com.softeq.jm.commons.util.CookieUtil;
 import com.softeq.jm.model.RememberMe;
-import com.softeq.jm.repository.RememberMeRepository;
+import com.softeq.jm.repository.*;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
