@@ -8,6 +8,6 @@
     <body>
         <h2>Home page</h2>
 <%--        <a href="${linkTo[CompanyController].companies}">Companies</a>--%>
-        <a href="${contexPath}">${contexPath}</a>
+        <a href="${contexPath}/v2/companies">Companies</a>
     </body>
 </html>
