@@ -14,17 +14,17 @@ import javax.annotation.Resource;
  */
 
 @RestController
-@RequestMapping("/v2/login")
+@RequestMapping("/login")
 public class SpringLoginController {
     @Resource(mappedName = "java:global/jm/UserService!com.softeq.jm.service.UserService")
     private UserService userService;
     @Resource(mappedName = "java:global/jm/RememberMeService!com.softeq.jm.service.RememberMeService")
     private RememberMeService rememberMeService;
 
-    @PostMapping
+    @PostMapping("login")
     public ModelAndView signin(String email, String password, boolean rememberme) {
+        System.out.println("i'm in SPRING LOGIN");
         ModelAndView view = new ModelAndView("/login/login");
-
         return view;
     }
 }

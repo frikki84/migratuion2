@@ -25,6 +25,7 @@ public class CompanyController {
 
     @Get
     public void companies() {
+        System.out.println("I'M IN VRAPTOR");
         result.include("companies", companyService.findAll());
     }
 
