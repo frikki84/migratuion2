@@ -1,9 +1,12 @@
 package com.softeq.jm.spring.service;
 
 import com.softeq.jm.model.Company;
+import com.softeq.jm.service.CompanyService;
 import com.softeq.jm.spring.repository.SpringCompanyRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -11,11 +14,9 @@ import java.util.List;
  */
 @Component
 public class SpringCompanyService {
-    private final SpringCompanyRepository springCompanyRepository;
-
-    public SpringCompanyService(SpringCompanyRepository springCompanyRepository) {
-        this.springCompanyRepository = springCompanyRepository;
-    }
+//    @Resource(mappedName = "java:global/jm/CompanyService!com.softeq.jm.service.CompanyService")
+    @Autowired
+    private SpringCompanyRepository springCompanyRepository;
 
     public void persist(Company company) {
         springCompanyRepository.persist(company);

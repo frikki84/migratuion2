@@ -27,7 +27,7 @@ import java.util.Set;
 
 public class MigrationFilter extends VRaptor {
     private static final Set<String> EXCLUDE_PATHS = Collections.unmodifiableSet(new HashSet<>(Arrays.asList(
-        "/home/home", "/login/login", "/company/companies", "/company"
+        "/home/v2/home", "/login/v2/login", "/company/v2/companies"
     )));
 
     @Override

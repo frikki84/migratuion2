@@ -10,7 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
  * Created by ydziadkouskaya on 6/25/2021.
  */
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/home/v2")
 public class SpringHomeController {
 
     @GetMapping

@@ -8,7 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
-@Entity
+@Entity(name = "Company2")
 @Table(name = "company")
 public class Company {
 
@@ -56,5 +56,15 @@ public class Company {
 
     public void setWebsite(String website) {
         this.website = website;
+    }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+            "id=" + id +
+            ", name='" + name + '\'' +
+            ", phone='" + phone + '\'' +
+            ", website='" + website + '\'' +
+            '}';
     }
 }
