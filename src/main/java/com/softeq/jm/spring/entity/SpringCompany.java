@@ -1,4 +1,8 @@
-package com.softeq.jm.model;
+package com.softeq.jm.spring.entity;
+
+/**
+ * Created by ydziadkouskaya on 6/29/2021.
+ */
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +14,7 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "company")
-public class Company {
+public class SpringCompany {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,3 +72,4 @@ public class Company {
             '}';
     }
 }
+

@@ -1,17 +1,10 @@
 package com.softeq.jm.spring.configs;
 
-import com.softeq.jm.spring.repository.SpringCompanyRepository;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -24,7 +17,6 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
-import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -70,17 +62,19 @@ public class SpringConfig {
         dataSource.setPassword("201016");
         return dataSource;
     }
+
     @Bean
+        //(name = "readingEntityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource,
                                                                        JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
-
+        //lef.setPersistenceUnitName("springPersistenseContext");
         lef.setPackagesToScan("com.softeq.jm");
         lef.setJpaVendorAdapter(jpaVendorAdapter);
         lef.setJpaProperties(hibernateProperties());
         lef.setJtaDataSource(dataSource);
         lef.setDataSource(dataSource);
-
+        lef.afterPropertiesSet();
         return lef;
     }
 
@@ -94,6 +88,7 @@ public class SpringConfig {
     }
 
     @Bean
+        //(name = "readingEntityManagerFactory")
     public PlatformTransactionManager hibernateTransactionManager(
         LocalContainerEntityManagerFactoryBean entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
@@ -114,7 +109,7 @@ public class SpringConfig {
         return new PersistenceExceptionTranslationPostProcessor();
     }
 
-   final  public Properties hibernateProperties() {
+    final public Properties hibernateProperties() {
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.hbm2ddl.auto", "update");
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");

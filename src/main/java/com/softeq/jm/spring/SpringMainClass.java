@@ -18,43 +18,42 @@ import javax.servlet.ServletRegistration;
  */
 
 
-public class SpringMainClass  extends AbstractAnnotationConfigDispatcherServletInitializer {
-//    implements WebApplicationInitializer {
-//    @Override
-//    public void onStartup(ServletContext servletContext) throws ServletException {
-//        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
-//        ctx.register(SpringConfig.class);
-//        ctx.setServletContext(servletContext);
-//        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
-//        servletContext.addListener(new ContextLoaderListener(ctx));
-//        servlet.setLoadOnStartup(1);
-//        servlet.addMapping("/");
-//        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
-//        encodingFilter.setInitParameter("encoding", "UTF-8");
-//        encodingFilter.setInitParameter("forceEncoding", "true");
-//        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
-//    }
-//}
-//    }
-
+public class SpringMainClass  implements WebApplicationInitializer {
     @Override
     public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
-    }
-
-    @Override
-    protected Class<?>[] getRootConfigClasses() {
-        return null;
-    }
-
-    @Override
-    protected Class<?>[] getServletConfigClasses() {
-        return new Class[]{SpringConfig.class};
-    }
-
-    @Override
-    protected String[] getServletMappings() {
-        return new String[]{"/"};
+        AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
+        ctx.register(SpringConfig.class);
+        ctx.setServletContext(servletContext);
+        ServletRegistration.Dynamic servlet = servletContext.addServlet("dispatcher", new DispatcherServlet(ctx));
+        servletContext.addListener(new ContextLoaderListener(ctx));
+        servlet.setLoadOnStartup(1);
+        servlet.addMapping("/");
+        FilterRegistration.Dynamic encodingFilter = servletContext.addFilter("encodingFilter", CharacterEncodingFilter.class);
+        encodingFilter.setInitParameter("encoding", "UTF-8");
+        encodingFilter.setInitParameter("forceEncoding", "true");
+        encodingFilter.addMappingForUrlPatterns(null, true, "/*");
     }
 }
+
+
+//    @Override
+//    public void onStartup(ServletContext servletContext) throws ServletException {
+//        super.onStartup(servletContext);
+//    }
+//
+//    @Override
+//    protected Class<?>[] getRootConfigClasses() {
+//        return null;
+//    }
+//
+//    @Override
+//    protected Class<?>[] getServletConfigClasses() {
+//        return new Class[]{SpringConfig.class};
+//    }
+//
+//    @Override
+//    protected String[] getServletMappings() {
+//        return new String[]{"/"};
+//    }
+
 

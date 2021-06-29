@@ -2,6 +2,7 @@ package com.softeq.jm.spring.controller;
 
 import com.softeq.jm.model.Company;
 import com.softeq.jm.service.CompanyService;
+import com.softeq.jm.spring.entity.SpringCompany;
 import com.softeq.jm.spring.service.SpringCompanyService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,16 +33,16 @@ public class SpringCompanyController {
     @GetMapping("/companies")
     public ModelAndView companies() {
         System.out.println("I'm in SPRING COMPANIES");
-        List<Company> companies = companyService.findAll();
+        List<SpringCompany> companies = companyService.findAll();
         ModelAndView view = new ModelAndView("company/companies");
         view.addObject("companies", companies);
         return view;
     }
 
     @PostMapping
-    public ModelAndView addCompany(Company company) {
+    public ModelAndView addCompany(SpringCompany company) {
         companyService.persist(company);
-        List<Company> companies = companyService.findAll();
+        List<SpringCompany> companies = companyService.findAll();
         ModelAndView view = new ModelAndView("company/companies");
         view.addObject("companies", companies);
         return view;

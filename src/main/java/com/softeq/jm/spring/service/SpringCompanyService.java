@@ -2,6 +2,7 @@ package com.softeq.jm.spring.service;
 
 import com.softeq.jm.model.Company;
 import com.softeq.jm.service.CompanyService;
+import com.softeq.jm.spring.entity.SpringCompany;
 import com.softeq.jm.spring.repository.SpringCompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,11 +19,11 @@ public class SpringCompanyService {
     @Autowired
     private SpringCompanyRepository springCompanyRepository;
 
-    public void persist(Company company) {
+    public void persist(SpringCompany company) {
         springCompanyRepository.persist(company);
     }
 
-    public List<Company> findAll() {
+    public List<SpringCompany> findAll() {
         return springCompanyRepository.findAll();
     }
 }
